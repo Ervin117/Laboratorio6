@@ -22,7 +22,7 @@ void mostrarLect(char dato);
 int main (void)
 {
 	setup();
-	serialLECT('E');
+	serialLECT('e');
 	while (1)
 	{
 		
@@ -45,7 +45,7 @@ void serialUART()
 	DDRD &= ~(1<<DDD0);
 	
 	//configurado para enviar y recibir. 
-	UCSR0A = 0; 
+	//UCSR0A = 0; 
 	UCSR0B |= (1<< RXCIE0) | (1<<RXEN0) | (1<<TXEN0); 
 	UCSR0C |= (1<< UCSZ01) | (1<<UCSZ00);
 	UBRR0 = 103; //valor calculado para los 9600
