@@ -159,7 +159,7 @@ void stringTermi(char* oracion)
 
 000000f8 <_Z5ADC_1v>:
 
-void	ADC_1()
+void ADC_1()
 {
 	//ADMUX = 0;
 	ADMUX |= (1<<REFS0) | (1<<ADLAR) | (1 << MUX0) |  (1 << MUX1) | (1<<MUX2); //
@@ -278,14 +278,15 @@ void num(uint8_t numero)
 {
  184:	cf 93       	push	r28
  186:	df 93       	push	r29
-	uint8_t centenas = numero / 100;
+	//se separa el numero sus cifras correspondientes
+	uint8_t centenas = numero / 100; //saber centenas
  188:	99 e2       	ldi	r25, 0x29	; 41
  18a:	89 9f       	mul	r24, r25
  18c:	91 2d       	mov	r25, r1
  18e:	11 24       	eor	r1, r1
  190:	92 95       	swap	r25
  192:	9f 70       	andi	r25, 0x0F	; 15
-	uint8_t decenas = (numero % 100) / 10;
+	uint8_t decenas = (numero % 100) / 10; //saber decenas
  194:	d8 2f       	mov	r29, r24
  196:	24 e6       	ldi	r18, 0x64	; 100
  198:	92 9f       	mul	r25, r18
@@ -298,7 +299,7 @@ void num(uint8_t numero)
  1a6:	d6 95       	lsr	r29
  1a8:	d6 95       	lsr	r29
  1aa:	d6 95       	lsr	r29
-	uint8_t unidades = numero % 10;
+	uint8_t unidades = numero % 10;	//saber unidades
  1ac:	8c 9f       	mul	r24, r28
  1ae:	c1 2d       	mov	r28, r1
  1b0:	11 24       	eor	r1, r1
@@ -313,6 +314,7 @@ void num(uint8_t numero)
  1c2:	8c 1b       	sub	r24, r28
  1c4:	c8 2f       	mov	r28, r24
 	
+	//Es el punto de origen del conteo
 	serialLECT(centenas + '0');
  1c6:	80 e3       	ldi	r24, 0x30	; 48
  1c8:	89 0f       	add	r24, r25
